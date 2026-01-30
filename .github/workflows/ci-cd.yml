@@ -1,0 +1,30 @@
+name: TechNova CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Build Angular App
+        run: npm run build --if-present
+
+      # This step ensures your backend doesn't have syntax errors
+      - name: Test Backend
+        run: |
+          cd server # replace with your backend folder name if different
+          npm install

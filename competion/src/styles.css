@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.icon-header i { font-size: 3rem; color: #004aad; margin-bottom: 15px; }
+
+.form-group { text-align: left; margin-bottom: 20px; }
+
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 14px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-auth:disabled { background-color: #ccc; }

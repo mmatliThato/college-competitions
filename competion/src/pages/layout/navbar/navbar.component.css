@@ -1,0 +1,114 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #004aad; /* The TechNova deep blue */
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.nav-links a:hover, .active {
+  color: white;
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-login, .btn-register {
+  padding: 8px 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-login {
+  background-color: #1a237e;
+  color: white;
+}
+
+.btn-register {
+  background-color: white;
+  color: #333;
+}
+.dropdown-toggle::after {
+    margin-left: 0.5em;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* Fixes the dropdown position so it doesn't push the navbar height */
+.dropdown-menu {
+  position: absolute !important;
+  top: 100%;
+  right: 0;
+}
+
+.bg-primary {
+  background-color: #0d6efd !important; /* Matches your blue theme */
+}
+
+.navbar-brand {
+  letter-spacing: -0.05em;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.tracking-tight {
+  letter-spacing: -0.04em;
+}
+
+/* Active link styling */
+.text-primary {
+  color: #0052cc !important;
+  font-weight: 700;
+}

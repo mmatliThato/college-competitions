@@ -1,0 +1,126 @@
+/* --- 1. HERO SECTION (PRESERVED) --- */
+.hero {
+  height: 80vh;
+  /* Preserving your specific blue gradient and Unsplash background */
+  background: linear-gradient(rgba(0, 74, 173, 0.8), rgba(0, 74, 173, 0.8)), 
+              url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* --- 2. BUTTONS --- */
+.btn-primary {
+  background-color: #004aad;
+  color: white;
+  border: 2px solid white;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #004aad;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* --- 3. FEATURED SECTION & CARDS --- */
+.featured {
+  padding: 80px 0;
+  background-color: #f8f9fa; /* Light grey background to make cards pop */
+}
+
+.featured h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+/* Modern Card Design */
+.hover-up {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  border-radius: 15px !important;
+}
+
+.hover-up:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-card-img {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-title {
+  color: #2d1564;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+/* Line Clamping: Keeps all cards the same height */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  height: 4.5em; 
+  line-height: 1.5em;
+  color: #6c757d;
+}
+
+.card-footer {
+  padding-top: 0;
+}
+
+.btn-outline-primary {
+  border: 2px solid #004aad;
+  color: #004aad;
+  border-radius: 50px; /* Pill shape */
+  padding: 10px 20px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #004aad;
+  color: white;
+}

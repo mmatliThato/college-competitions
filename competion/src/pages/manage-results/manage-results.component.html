@@ -1,0 +1,63 @@
+<div class="tech-nova-workspace py-5">
+  <div class="container">
+    <header class="mb-5">
+      <h1 class="fw-bold tracking-tight">College Admin: Results Manager</h1>
+      <p class="text-muted">Select a competition to review submissions and award winners.</p>
+    </header>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <label class="admin-label">Active Competitions</label>
+        <select class="form-select border-0 border-bottom rounded-0 shadow-none" 
+                [(ngModel)]="selectedCompId" (change)="onCompetitionChange()">
+          <option value="">Select a Challenge...</option>
+          @for (comp of competitions(); track comp._id) {
+            <option [value]="comp._id">{{comp.title}}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead class="bg-light">
+              <tr>
+                <th class="admin-label">Student</th>
+                <th class="admin-label">Project Title</th>
+                <th class="admin-label">Repository</th>
+                <th class="admin-label">Date</th>
+                <th class="admin-label text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of participants(); track item._id) {
+                <tr [class.bg-winner]="item.isWinner">
+                  <td>
+                    <div class="fw-bold">{{item.userId?.fullName}}</div>
+                    <div class="small text-muted">{{item.userId?.email}}</div>
+                  </td>
+                  <td>{{item.projectName}}</td>
+                  <td><a [href]="item.githubUrl" target="_blank" class="text-decoration-none">Open Link</a></td>
+                  <td>{{item.createdAt | date:'shortDate'}}</td>
+                  <td class="text-end">
+                    @if (item.isWinner) {
+                      <span class="badge bg-warning text-dark">🏆 WINNER</span>
+                    } @else {
+                      <button (click)="declareWinner(item._id)" class="btn btn-sm btn-dark">Declare Winner</button>
+                    }
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="5" class="text-center py-5 text-muted">No submissions found for this competition.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

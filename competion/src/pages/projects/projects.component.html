@@ -1,0 +1,65 @@
+<div class="tech-nova-workspace py-5">
+  <div class="container px-4">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <header class="mb-5">
+          <h1 class="fw-extrabold tracking-tight h1-display">Project Entry</h1>
+          <p class="text-muted small">Finalize your technical documentation for submission.</p>
+        </header>
+
+        <form #projectForm="ngForm">
+          <div class="field-block mb-5">
+            <label class="admin-label">Official Project Title</label>
+            <input type="text" name="pName" [(ngModel)]="submissionObj.projectName" 
+                   class="minimal-input h2-font" placeholder="Untitled Project" required>
+          </div>
+
+          <div class="field-block mb-5">
+            <label class="admin-label">Architecture & Logic Description</label>
+            <textarea name="pDesc" [(ngModel)]="submissionObj.description" 
+                      class="minimal-input" rows="6" 
+                      placeholder="Describe the problem solved and your technical approach..." required></textarea>
+          </div>
+
+          <div class="row mb-5">
+            <div class="col-md-6">
+              <label class="admin-label">Technical Stack</label>
+              <input type="text" name="pStack" [(ngModel)]="submissionObj.techStack" 
+                     class="minimal-input" placeholder="e.g., Angular 19, Node.js">
+            </div>
+            <div class="col-md-6">
+              <label class="admin-label">Repository URL (GitHub)</label>
+              <input type="url" name="pUrl" [(ngModel)]="submissionObj.githubUrl" 
+                     class="minimal-input" placeholder="https://github.com/..." required>
+            </div>
+          </div>
+
+          <div class="action-footer pt-4 border-top">
+            <button type="button" class="btn-execute" 
+                    [disabled]="projectForm.invalid" (click)="onSubmit()">
+              Execute Submission
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-4">
+        <aside class="sidebar-context p-4 bg-light border">
+          <h6 class="admin-label border-bottom pb-2 mb-3">Context</h6>
+          <div class="context-item mb-3">
+            <span class="label-small">Competition</span>
+            <p class="fw-bold mb-0 text-dark">{{compDetails()?.title}}</p>
+          </div>
+          <div class="context-item mb-3">
+            <span class="label-small">Deadline</span>
+            <p class="fw-bold mb-0">{{compDetails()?.endDate | date:'dd MMM yyyy'}}</p>
+          </div>
+          <div class="context-item border-0">
+            <span class="label-small">Participant</span>
+            <!-- <p class="fw-bold mb-0">{{apiSrv.loggedUser()?.fullName}}</p> -->
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>

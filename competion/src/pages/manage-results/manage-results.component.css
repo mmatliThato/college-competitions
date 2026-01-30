@@ -1,0 +1,99 @@
+/* Layout & Workspace */
+.admin-workspace {
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.tracking-tight {
+  letter-spacing: -0.04em;
+}
+
+/* Typography & Labels */
+.admin-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #6b778c;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Custom Select Dropdown */
+.minimalist-select {
+  border: none;
+  border-bottom: 2px solid #dfe1e6;
+  border-radius: 0;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #172b4d;
+  background-color: transparent;
+  transition: border-color 0.2s;
+}
+
+.minimalist-select:focus {
+  border-bottom-color: #0052cc;
+  box-shadow: none;
+}
+
+/* Table Design */
+.table {
+  border: 1px solid #dfe1e6;
+}
+
+.table thead th {
+  background-color: #f4f5f7;
+  border-bottom: 2px solid #dfe1e6;
+  padding: 1rem 0.75rem;
+}
+
+.table tbody tr {
+  transition: background-color 0.1s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #fafbfc;
+}
+
+/* Winner Highlight Logic */
+.winner-row {
+  background-color: #fffdf0 !important; /* Soft gold for the winning row */
+}
+
+.winner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fffae6;
+  color: #ff8b00;
+  border: 1px solid #ffe380;
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Button Styling */
+.btn-dark {
+  background-color: #172b4d;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+}
+
+.btn-dark:hover {
+  background-color: #091e42;
+}
+
+/* Badge for Tech Stack */
+.badge-tech {
+  background: #f4f5f7;
+  color: #42526e;
+  border: 1px solid #dfe1e6;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-weight: 500;
+}

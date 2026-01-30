@@ -1,0 +1,65 @@
+/* Table Refinement */
+.table thead th {
+  background-color: #f1f4f9;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: #6c757d;
+  border-bottom: 2px solid #dee2e6;
+  padding: 12px;
+}
+
+.table tbody td {
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+/* Form Styling */
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #0d6efd; /* Bootstrap primary blue */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+  outline: none;
+}
+
+/* Label Styling */
+.label-bold {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Status Badges */
+.badge {
+  padding: 0.6em 0.9em;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Card Improvements */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Action Buttons */
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}

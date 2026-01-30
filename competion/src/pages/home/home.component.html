@@ -1,0 +1,72 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Showcase Your Innovation</h1>
+    <p>Join the most prestigious inter-college project competition and demonstrate your creative solutions to real-world problems.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" routerLink="/projects">
+        <i class="fa fa-trophy"></i> Browse Competitions
+      </button>
+      <button class="btn-secondary" routerLink="/register">
+        <i class="fa fa-user-plus"></i> Join Now
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="featured py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Ongoing Competitions</h2>
+      <p class="text-muted">Explore and register for the latest challenges</p>
+      <div class="border-bottom border-primary border-3 mx-auto" style="width: 60px;"></div>
+    </div>
+
+    <div class="row g-4">
+      @for (item of competitionList(); track item._id) {
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm hover-up">
+            <div class="position-relative">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600" 
+                   class="card-img-top custom-card-img" alt="Competition">
+              <span class="badge position-absolute top-0 end-0 m-3 rounded-pill px-3 py-2"
+                    [ngClass]="{
+                      'bg-success': item.status === 'Active',
+                      'bg-warning text-dark': item.status === 'Upcoming',
+                      'bg-secondary': item.status === 'Closed'
+                    }">
+                {{item.status}}
+              </span>
+            </div>
+
+            <div class="card-body d-flex flex-column text-start">
+              <h5 class="card-title fw-bold text-dark">{{item.title}}</h5>
+              <p class="card-text text-muted small line-clamp-3 mb-4">
+                {{item.description}}
+              </p>
+              
+              <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                <small class="text-primary fw-bold">
+                  <i class="fa fa-calendar-check-o me-1"></i> Ends: {{item.endDate | date:'MMM dd, yyyy'}}
+                </small>
+              </div>
+            </div>
+
+            <div class="card-footer bg-white border-0 pb-4">
+              <button class="btn btn-outline-primary w-100 fw-bold rounded-pill" 
+                      [routerLink]="['/submit-project', item._id]">
+                View Details
+              </button>
+
+              
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-12 text-center py-5">
+          <i class="fa fa-folder-open-o display-4 text-muted mb-3"></i>
+          <p class="text-muted fs-5">No competitions found. Check back soon!</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

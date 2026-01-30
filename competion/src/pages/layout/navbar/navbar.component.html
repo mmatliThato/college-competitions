@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
+  <div class="container">
+    <a class="navbar-brand fw-extrabold tracking-tight" routerLink="/home">
+      TECH<span class="text-primary">NOVA</span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#techNovaNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="techNovaNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/home" routerLinkActive="text-primary">Home</a>
+        </li>
+
+        @if (apiSrv.loggedUser()) {
+          @if (apiSrv.loggedUser().role === 'Student') {
+            <li class="nav-item">
+              <a class="nav-link px-3" routerLink="/my-projects" routerLinkActive="text-primary">My Archive</a>
+            </li>
+          }
+
+          @if (apiSrv.loggedUser().role === 'College') {
+            <li class="nav-item">
+              <a class="nav-link px-3 fw-bold text-dark" routerLink="/manage-results" routerLinkActive="text-primary">
+                <i class="fa fa-th-large me-1"></i> Manage Results
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3" routerLink="/competition" routerLinkActive="text-primary">Create Challenge</a>
+            </li>
+          }
+
+          <li class="nav-item ms-lg-3">
+            <div class="d-flex align-items-center bg-light rounded-pill ps-3 pe-1 py-1">
+              <span class="small fw-semibold text-muted me-2">{{ apiSrv.loggedUser().fullName }}</span>
+              <button (click)="apiSrv.logout()" class="btn btn-dark btn-sm rounded-pill px-3">
+                Logout
+              </button>
+            </div>
+          </li>
+        } @else {
+          <li class="nav-item">
+            <a class="nav-link px-3" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary rounded-0 px-4" routerLink="/register">Join Now</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

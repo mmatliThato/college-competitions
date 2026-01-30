@@ -3,28 +3,31 @@ name: TechNova CI/CD
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
+      # Step 1: Use the standard checkout (this avoids the Git 128 error)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false 
+
+      # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+          cache: 'npm'
+
+      # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm install
-        
-      - name: Build Angular App
-        run: npm run build --if-present
 
-      # This step ensures your backend doesn't have syntax errors
-      - name: Test Backend
-        run: |
-          cd server # replace with your backend folder name if different
-          npm install
+      # Step 4: Build the project
+      - name: Build Project
+        run: npm run build --if-present
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}

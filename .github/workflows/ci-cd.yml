@@ -8,26 +8,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Use the standard checkout (this avoids the Git 128 error)
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false 
 
-      # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
-      # Step 3: Install dependencies
+      # Tell the robot to go INTO your project folder to find package-lock.json
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd competion  # <--- Change 'competion' to your actual folder name
+          npm install
 
-      # Step 4: Build the project
       - name: Build Project
-        run: npm run build --if-present
+        run: |
+          cd competion  # <--- Change this to match above
+          npm run build --if-present
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}

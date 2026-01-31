@@ -23,14 +23,15 @@ export class ApiService {
   }
 
   // --- AUTHENTICATION METHODS ---
+ // --- AUTHENTICATION METHODS ---
   login(obj: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, obj);
   }
 
   register(obj: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/register`, obj);
+    // REMOVED '/auth' so it matches your backend route app.post('/api/register')
+    return this.http.post(`${this.baseUrl}/register`, obj);
   }
-
   logout() {
     localStorage.removeItem('techNovaUser');
     this.loggedUser.set(null);

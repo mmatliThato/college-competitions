@@ -17,10 +17,8 @@ export class ProjectsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  // Relational data for the sidebar
   compDetails = signal<any>(null);
 
-  // Object matches your modified Project.js Schema
   submissionObj: any = {
     competitionId: '',
     userId: '',
@@ -31,7 +29,6 @@ export class ProjectsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // 1. Capture IDs from environment and session
     const compId = this.route.snapshot.paramMap.get('id');
     const user = this.apiSrv.loggedUser(); // Uses the signal in your service
 

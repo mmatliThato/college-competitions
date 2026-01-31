@@ -19,23 +19,32 @@ export class RegisterComponent {
     collegeName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    role: new FormControl('student') // Default role
+    role: new FormControl('Student', [Validators.required]) // Default role
   });
 
-  onRegister() {
-    if (this.registerForm.valid) {
-      this.apiSrv.register(this.registerForm.value).subscribe({
-        next: (res: any) => {
-          if (res.result) {
-            alert("Registration Successful! Please Login.");
-            this.router.navigateByUrl('/login');
-          }
-        },
-        error: (err) => {
-          // Show the error message from your Express server (e.g., "Email already registered")
-          alert(err.error.message || "Registration Failed");
+ onRegister() {
+  if (this.registerForm.valid) {
+    const formValues = this.registerForm.value;
+
+    const payload = {
+      fullName: formValues.fullName,
+      email: formValues.email,
+      password: formValues.password,
+      collegeName: formValues.collegeName,
+      role: (formValues.role ?? 'student').toLowerCase() 
+    };
+
+    this.apiSrv.register(payload).subscribe({
+      next: (res: any) => {
+        if (res.result) {
+          alert("Registration Successful! Please Login.");
+          this.router.navigateByUrl('/login');
         }
-      });
-    }
+      },
+      error: (err) => {
+        alert(err.error?.message || "Registration failed.");
+      }
+    });
   }
+}
 }

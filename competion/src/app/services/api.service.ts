@@ -22,14 +22,12 @@ export class ApiService {
     return data ? JSON.parse(data) : null;
   }
 
-  // --- AUTHENTICATION METHODS ---
- // --- AUTHENTICATION METHODS ---
+
   login(obj: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, obj);
   }
 
   register(obj: any): Observable<any> {
-    // REMOVED '/auth' so it matches your backend route app.post('/api/register')
     return this.http.post(`${this.baseUrl}/register`, obj);
   }
   logout() {
@@ -38,7 +36,6 @@ export class ApiService {
     this.router.navigateByUrl('/login');
   }
 
-  // --- COMPETITION METHODS ---
   getCompetitions(): Observable<any> {
     return this.http.get(`${this.baseUrl}/getCompetitions`);
   }
@@ -55,7 +52,6 @@ export class ApiService {
     return this.http.delete(`${this.baseUrl}/deleteCompetition/${id}`);
   }
 
-  // --- PROJECT SUBMISSION METHODS ---
   submitProject(projectObj: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/project`, projectObj);
   }
@@ -64,7 +60,6 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/getUserSubmissions/${userId}`);
   }
 
-  // --- COLLEGE ADMIN METHODS ---
   getParticipants(compId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/getParticipants/${compId}`);
   }

@@ -29,19 +29,16 @@ export class SubmitProjectComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // 1. Capture Competition ID from the URL (:id)
     const compId = this.route.snapshot.paramMap.get('id');
     if (compId) {
       this.submissionObj.competitionId = compId;
       this.getCompInfo(compId);
     }
 
-    // 2. Capture User ID from Authentication session
     const user = this.apiSrv.loggedUser();
     if (user && user._id) {
       this.submissionObj.userId = user._id;
     } else {
-      // Professional Guard: Redirect if not logged in
       this.router.navigateByUrl('/login');
     }
   }
@@ -55,7 +52,6 @@ export class SubmitProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    // Execute the final submission to the database
     this.apiSrv.submitProject(this.submissionObj).subscribe({
       next: (res: any) => {
         if (res.result) {

@@ -25,7 +25,6 @@ export class CompetitionComponent implements OnInit {
     status: 'Upcoming' 
   };
   
-  // FIX: This name must match competitionsList() in your HTML
   competitionsList = signal<any[]>([]);
 
   ngOnInit() {
@@ -41,7 +40,6 @@ export class CompetitionComponent implements OnInit {
   }
 
   saveCompetition() {
-    // We send _id as competitionId so the backend knows whether to Update or Create
     const payload = { 
       ...this.competitionObj, 
       competitionId: this.competitionObj._id || 0 
@@ -57,7 +55,6 @@ export class CompetitionComponent implements OnInit {
   }
 
   onEdit(data: any) {
-    // Format dates so the HTML date input can actually display them
     this.competitionObj = { 
       ...data,
       startDate: this.datePipe.transform(data.startDate, 'yyyy-MM-dd'),

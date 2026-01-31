@@ -24,13 +24,10 @@ export class LoginComponent {
       this.apiSrv.login(this.loginForm.value).subscribe({
         next: (res: any) => {
           if (res.result) {
-            // 1. Save to LocalStorage for persistence
             localStorage.setItem('techNovaUser', JSON.stringify(res.data));
             
-            // 2. Update the Signal so the Navbar changes INSTANTLY
             this.apiSrv.loggedUser.set(res.data);
             
-            // 3. Navigate to Home or Dashboard
             this.router.navigateByUrl('/home');
           }
         },

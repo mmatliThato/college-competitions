@@ -7,6 +7,23 @@
     </div>
 
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="role-selection">
+        <label class="role-option">
+          <input type="radio" formControlName="role" value="Student">
+          <div class="role-box">
+            <i class="fa fa-graduation-cap"></i>
+            <span>Student</span>
+          </div>
+        </label>
+        <label class="role-option">
+          <input type="radio" formControlName="role" value="College">
+          <div class="role-box">
+            <i class="fa fa-university"></i>
+            <span>College Admin</span>
+          </div>
+        </label>
+      </div>
+
       <div class="form-row">
         <div class="form-group">
           <label>Full Name</label>

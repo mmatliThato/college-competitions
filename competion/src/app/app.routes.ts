@@ -17,18 +17,14 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
-  
-  // Changed from 'competitions' to 'projects' to fix the NG04002 error
-  { path: 'projects', component: ProjectsComponent }, 
+    { path: 'projects', component: ProjectsComponent }, 
   
   { path: 'student-list', component: StudentsComponent },
   
-  // This is the specific submission page for Thato to join a challenge
   { path: 'submit-project/:id', component: SubmitProjectComponent },
   
   { path: 'competition', component: CompetitionComponent },
   
-  // College Admin Page to view student lists and declare winners
   { path: 'manage-results', component: ManageResultsComponent }, 
 
   { 
@@ -37,6 +33,5 @@ export const routes: Routes = [
     canActivate: [() => inject(ApiService).loggedUser() ? true : inject(Router).createUrlTree(['/login'])]
   },
 
-  // Wildcard: Redirects any typos back to home
   { path: '**', redirectTo: 'home' }
 ];

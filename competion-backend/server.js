@@ -10,16 +10,33 @@ const Competition = require('./models/Competition');
 const Project = require('./models/Project');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
 
-// Middleware
-app.use(cors());
+/** * FIX 1: Dynamic Port for Render
+ * Render uses an environment variable for the port. 10000 is the default.
+ */
+const PORT = process.env.PORT || 10000;
+
+// --- MIDDLEWARE ---
+/** * FIX 2: Relaxed CORS for Production
+ * This allows your local Angular (4200) and your future Vercel site to talk to this API.
+ */
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // --- DATABASE CONNECTION (ATLAS) ---
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to TechNova Cloud (Atlas) ☁️'))
   .catch(err => console.error('Atlas Connection Error:', err));
+
+// --- ROOT ROUTE (To verify it's live) ---
+app.get('/', (req, res) => {
+  res.send('TechNova API is running successfully on Render!');
+});
 
 // --- AUTHENTICATION ROUTES ---
 
@@ -40,7 +57,8 @@ app.post('/api/login', async (req, res) => {
     
     if (user) {
       // Create a Token for secure session management
-      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '24h' });
+      // Ensure JWT_SECRET is added to Render Environment variables!
+      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || 'fallback_secret', { expiresIn: '24h' });
       res.json({ result: true, data: user, token: token });
     } else {
       res.status(401).json({ result: false, message: "Invalid credentials" });
@@ -53,8 +71,12 @@ app.post('/api/login', async (req, res) => {
 // --- COMPETITION ROUTES ---
 
 app.get('/api/getCompetitions', async (req, res) => {
-  const data = await Competition.find().sort({ endDate: 1 });
-  res.json({ result: true, data: data });
+  try {
+    const data = await Competition.find().sort({ endDate: 1 });
+    res.json({ result: true, data: data });
+  } catch (err) {
+    res.status(500).json({ result: false, message: err.message });
+  }
 });
 
 app.get('/api/getCompetitionById/:id', async (req, res) => {
@@ -91,7 +113,6 @@ app.get('/api/getUserSubmissions/:userId', async (req, res) => {
 
 // --- COLLEGE ADMIN ROUTES ---
 
-// Get participants for a specific competition
 app.get('/api/getParticipants/:compId', async (req, res) => {
   try {
     const data = await Project.find({ competitionId: req.params.compId })
@@ -103,7 +124,6 @@ app.get('/api/getParticipants/:compId', async (req, res) => {
   }
 });
 
-// Set the Competition Winner
 app.post('/api/setWinner', async (req, res) => {
   try {
     const { projectId, competitionId } = req.body;
@@ -114,8 +134,6 @@ app.post('/api/setWinner', async (req, res) => {
     res.status(500).json({ result: false, message: err.message });
   }
 });
-
-
 
 // --- DASHBOARD STATS (COLLEGE ROLE) ---
 app.get('/api/college-stats', async (req, res) => {
@@ -140,13 +158,12 @@ app.get('/api/recent-winners', async (req, res) => {
       .populate('userId', 'fullName')
       .populate('competitionId', 'title')
       .sort({ updatedAt: -1 })
-      .limit(5); // Show top 5 recent winners
+      .limit(5);
     res.json({ result: true, data: winners });
   } catch (err) {
     res.status(500).json({ result: false, message: err.message });
   }
 });
-
 
 app.listen(PORT, () => {
   console.log(`TechNova Backend active on Port ${PORT}`);

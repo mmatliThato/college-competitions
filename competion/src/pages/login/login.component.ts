@@ -11,30 +11,30 @@ import { ApiService } from '../../app/services/api.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  apiSrv = inject(ApiService);
-  router = inject(Router);
+  // Using inject for cleaner dependency management
+  private apiSrv = inject(ApiService);
+  private router = inject(Router);
 
+  // Define the form structure
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
 
   onLogin() {
-    if (this.loginForm.valid) {
-      this.apiSrv.login(this.loginForm.value).subscribe({
-        next: (res: any) => {
-          if (res.result) {
-            localStorage.setItem('techNovaUser', JSON.stringify(res.data));
-            
-            this.apiSrv.loggedUser.set(res.data);
-            
-            this.router.navigateByUrl('/home');
-          }
-        },
-        error: (err) => {
-          alert(err.error.message || "Invalid Email or Password");
-        }
-      });
+  this.apiSrv.login(this.loginForm.value).subscribe((res: any) => {
+  if (res.result) {
+    localStorage.setItem('techNovaUser', JSON.stringify(res.data));
+    this.apiSrv.loggedUser.set(res.data);
+
+    // FIX: Match the Capital 'C' from your database
+    if (res.data.role === 'College') {
+      console.log("Admin detected!");
+      this.router.navigateByUrl('/home');
+    } else {
+      this.router.navigateByUrl('/home');
     }
+  }
+});
   }
 }

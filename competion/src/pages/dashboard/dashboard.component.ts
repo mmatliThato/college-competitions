@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApiService } from '../../app/services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
+apiSrv = inject(ApiService); // Now you can use {{ apiSrv.loggedUser().fullName }} in HTML
 }

@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <h1>Welcome back, {{ apiSrv.loggedUser()?.fullName }}</h1>
+      <p class="text-muted">Manage competitions for <strong>{{ apiSrv.loggedUser()?.collegeName }}</strong></p>
+    </div>
+   
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 bg-light p-3">
+        <h3>0</h3>
+        <p class="mb-0">Active Competitions</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 bg-light p-3">
+        <h3>0</h3>
+        <p class="mb-0">Total Applications</p>
+      </div>
+    </div>
+  </div>
+</div>

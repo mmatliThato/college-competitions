@@ -14,35 +14,36 @@ export class RegisterComponent {
   apiSrv = inject(ApiService);
   router = inject(Router);
 
+  // Initializing the form with proper validation
   registerForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     collegeName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    role: new FormControl('Student', [Validators.required]) // Default role
+    role: new FormControl('Student', [Validators.required]) 
   });
 
- onRegister() {
+onRegister() {
   if (this.registerForm.valid) {
-    const formValues = this.registerForm.value;
+    /** * We send the form value directly. 
+     * If you selected 'College' in the radio button, 
+     * this will send "College" with the capital C.
+     */
+    const payload = this.registerForm.value;
 
-    const payload = {
-      fullName: formValues.fullName,
-      email: formValues.email,
-      password: formValues.password,
-      collegeName: formValues.collegeName,
-      role: (formValues.role ?? 'student').toLowerCase() 
-    };
+    console.log("Pushing this to Render:", payload);
 
     this.apiSrv.register(payload).subscribe({
       next: (res: any) => {
         if (res.result) {
-          alert("Registration Successful! Please Login.");
+          alert("Registration Successful!");
           this.router.navigateByUrl('/login');
         }
       },
       error: (err) => {
-        alert(err.error?.message || "Registration failed.");
+        // This will tell us if the backend is still mad about the casing
+        console.error("Backend Error:", err.error);
+        alert("Error: " + (err.error?.message || "Check console"));
       }
     });
   }

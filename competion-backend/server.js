@@ -11,15 +11,10 @@ const Project = require('./models/Project');
 
 const app = express();
 
-/** * FIX 1: Dynamic Port for Render
- * Render uses an environment variable for the port. 10000 is the default.
- */
+
 const PORT = process.env.PORT || 10000;
 
-// --- MIDDLEWARE ---
-/** * FIX 2: Relaxed CORS for Production
- * This allows your local Angular (4200) and your future Vercel site to talk to this API.
- */
+
 app.use(cors({
   origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],

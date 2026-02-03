@@ -16,7 +16,6 @@ export class CompetitionComponent implements OnInit {
   apiSrv = inject(ApiService);
   datePipe = inject(DatePipe);
 
-  // The object used for the form
   competitionObj: any = { 
     title: '', 
     description: '', 

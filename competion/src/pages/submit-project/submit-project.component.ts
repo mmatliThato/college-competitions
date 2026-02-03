@@ -18,7 +18,6 @@ export class SubmitProjectComponent implements OnInit {
 
   compDetails: any = null;
 
-  // The model now matches the refined Project.js schema in the backend
   submissionObj: any = {
     competitionId: '',
     userId: '',

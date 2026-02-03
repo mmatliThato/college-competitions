@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     const compId = this.route.snapshot.paramMap.get('id');
-    const user = this.apiSrv.loggedUser(); // Uses the signal in your service
+    const user = this.apiSrv.loggedUser();
 
     if (compId) {
       this.submissionObj.competitionId = compId;

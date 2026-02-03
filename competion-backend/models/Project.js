@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
-    // Link to the specific Competition (Essential for the sidebar context)
     competitionId: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Competition', 
         required: true 
     },
-    // Link to the specific User (More secure and professional than using email)
     userId: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 

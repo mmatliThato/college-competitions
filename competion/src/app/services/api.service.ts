@@ -11,10 +11,8 @@ export class ApiService {
   private http = inject(HttpClient);
   private router = inject(Router);
   
-  // Now using the environment-based URL
   private baseUrl = environment.apiUrl; 
 
-  // Professional Signal for User State
   loggedUser = signal<any>(this.getUserFromStorage());
 
   private getUserFromStorage() {

@@ -8,5 +8,5 @@ import { ApiService } from '../../app/services/api.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-apiSrv = inject(ApiService); // Now you can use {{ apiSrv.loggedUser().fullName }} in HTML
+apiSrv = inject(ApiService); 
 }

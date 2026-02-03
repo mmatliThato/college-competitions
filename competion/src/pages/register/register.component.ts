@@ -25,10 +25,7 @@ export class RegisterComponent {
 
 onRegister() {
   if (this.registerForm.valid) {
-    /** * We send the form value directly. 
-     * If you selected 'College' in the radio button, 
-     * this will send "College" with the capital C.
-     */
+  
     const payload = this.registerForm.value;
 
     console.log("Pushing this to Render:", payload);
@@ -41,7 +38,6 @@ onRegister() {
         }
       },
       error: (err) => {
-        // This will tell us if the backend is still mad about the casing
         console.error("Backend Error:", err.error);
         alert("Error: " + (err.error?.message || "Check console"));
       }

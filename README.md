@@ -4,9 +4,7 @@
 
 TechNova is a comprehensive full-stack management system designed to streamline inter-college competitions. It provides specialized dashboards for students to participate and for admins to manage reviews and statistics in real-time.
 
-## 🚀 Live Demo
-- **Frontend**:
-- **Backend API**:
+
 
 ## ✨ Key Features
 - **Role-Based Access Control**: Secure login and distinct interfaces for Students and College Admins.
